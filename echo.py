@@ -25,7 +25,7 @@ def backw(strng):
 
 def translate(text):
 	"""returns an english translation of your input. 
-	Translation provided by Google Translate"""
+	Translation provided by Google™ Translate"""
 	translator = Translator()
 	return translator.translate(text).text
 
