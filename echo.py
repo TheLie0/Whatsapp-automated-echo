@@ -24,10 +24,18 @@ def backw(strng):
 	return strng[::-1]
 
 def translate(text):
+	"""returns an english translation of your input. 
+	Translation provided by Google Translate"""
 	translator = Translator()
 	return translator.translate(text).text
 
 def sqr(strng):
+	"""MAKES THIS
+	AKES THISM
+	KES THISMA
+	ES THISMAK
+	S THISMAKE
+	 THISMAKES"""
 	out = ""
 	for i in range(len(strng)):
 		out += strng[i:] + strng[:i] + "\n"
@@ -38,12 +46,14 @@ def noFucks(text):
 		return "ok."
 
 def playInterested(text):
+	"""Pretends to be interested in the message in german"""
 	newText = text.replace(".","").replace(",","").replace("!","").replace("?","").replace(";","").replace(":","").replace("(","").replace(")","")
 	while newText[-1] == " ":
 		newText = newText[:-1]
 	return "Jaja, " + newText.split(" ")[-1] + ", interessant."
 
 def isThere(name):
+	"""checks if the given name is in the chat tile"""
 	try:
 		title = driver.find_element_by_class_name("pane-chat-header")
 		if name in title.text:
@@ -54,6 +64,7 @@ def isThere(name):
 		return False
 
 def boot_driver():
+	"""initializes the selenium webdriver"""
 	os.environ['MOZ_HEADLESS'] = '1'
 	path_to_firefox = getfile_local("geckodriver.exe")
 	path_to_profile = getfile_local("profile")
@@ -62,12 +73,14 @@ def boot_driver():
 	return driver
 
 def boot_whatsapp_interface():
+	"""opens web.whatsapp.com"""
 	driver = boot_driver()
 	driver.get("https://web.whatsapp.com/")
 	WebDriverWait(driver, 60)
 	return driver
 
 def process_messages(driver, botVar, spareList, lastText):
+	"""handles detection of incoming messages and answering them according to the botVar function"""
 
 	try:
 		unread = driver.find_element_by_class_name("unread")
@@ -107,6 +120,7 @@ def process_messages(driver, botVar, spareList, lastText):
 		return lastText
 
 def manage_whatsapp(maxWaitTime, botVar, spareList):
+	""" will manage all your whatsapp messages forever"""
 	driver = boot_whatsapp_interface()
 	waitTime = 1
 	lastText = ""
